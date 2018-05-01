@@ -35,10 +35,12 @@ function groupListItems(listItems){
 
 // build pagination links from number of groups.
 function buildPagination(){
-	$(".pagination").empty();
-	liGroups.forEach(function(value, i){
-		$(".pagination").append('<li id='+(i+1)+'><a>'+(i+1)+'</a></li>');
-	});
+	if (liGroups.length>1){
+		$(".pagination").empty();
+		liGroups.forEach(function(value, i){
+			$(".pagination").append('<li id='+(i+1)+'><a>'+(i+1)+'</a></li>');
+		});
+	}
 }
 
 // display based on selected link.
@@ -66,6 +68,7 @@ paginatnListener();
 
 // listen for student search
 $('.student-search button').click(function(){
+	$('.student-item').hide();
 	var search = $('.student-search input').val();
 	// clear error messages if any.
 	$('#error').remove();
@@ -78,6 +81,7 @@ $('.student-search button').click(function(){
 		buildPagination();
 		selected = 0; 
 		display();
+		paginatnListener();
 
 	// else filter all students by name and email matches.
 	}else{
