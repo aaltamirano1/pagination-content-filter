@@ -2,7 +2,7 @@ const showSelected=(selected)=>{
 	let minShown = (selected-1)*10;
 	let maxShown = minShown+10;
 
-	$('.visible').each(function(i, element){
+	$('.visible').each((i, element)=>{
 		if (i>=minShown){
 			$(element).show();
 		}
@@ -12,7 +12,7 @@ const showSelected=(selected)=>{
 	});
 }
 const watchPagination=()=>{
-	$('.pagination li').on('click', function(event){
+	$('.pagination li').on('click', function(e){
 		$('.student-item').hide();
 		let selected = $(this).find('a').text();
 		showSelected(selected);
@@ -23,7 +23,7 @@ const buildPagination=()=>{
 	let students = $('.visible');
 
 	if (students.length>10){
-		students.each(function(i, element){
+		students.each((i, element)=>{
 			if((i+1)%10==0){
 				let text = ((i+1)/10);
 				$(".pagination").append('<li><a>'+text+'</a></li>');
